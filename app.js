@@ -15,7 +15,8 @@ function noException() {
   return true;
 }
 
-// 전달받은 인수에 따라 다른 함수를 실행하는 함수
+// todo: 예외 처리 구문 try...catch...finally 를 어디서 작성해줘야 할까?
+// 전달받은 인수에 따라 다른 함수를 실행하는 함수 // todo: 이 함수 안에서?
 function callException(type) {
   if (type === "do") {
     doException();
@@ -24,16 +25,7 @@ function callException(type) {
   }
 }
 
-function main() {
-  try {
-    // todo: 경우에 따라 doException, noException 실행하는 코드로 변경하기
-    // doException(); // 에러(예외) 발생 케이스
-    noException(); // 에러(예외) 발생하지 않는 케이스
-  } catch (error) {
-    console.log(error);
-  } finally {
-    console.log("예외 처리 후 실행해야 하는 코드");
-  }
-}
+// 애플리케이션 메인 로직 함수 // todo: 이 함수 안에서?
+function main() {}
 
 main();
