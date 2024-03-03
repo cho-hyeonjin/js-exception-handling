@@ -16,7 +16,7 @@ function noException() {
 }
 
 // todo: 예외 처리 구문 try...catch...finally 를 어디서 작성해줘야 할까?
-// 전달받은 인수에 따라 다른 함수를 실행하는 함수 // todo: 이 함수 안에서?
+// 전달받은 인수에 따라 다른 함수를 실행하는 함수 --- 이 함수는 예외 케이스에 따라 다른 함수를 call 해주는 outer function 역할을 하는 함수일 뿐!
 function callException(type) {
   if (type === "do") {
     doException();
@@ -25,7 +25,21 @@ function callException(type) {
   }
 }
 
-// 애플리케이션 메인 로직 함수 // todo: 이 함수 안에서?
-function main() {}
+// 애플리케이션 메인 로직 함수
+// todo: 이 함수 내부에서 실행하는 것이 적합니다.
+// ✅ try...catch...finally 문의 특징
+// ✅ 밖으로 throw된 에러는 그 바깥쪽에 위치한 어느 함수든 catch로 잡기만 하면 된다는 것이기 떄문에
+// main 함수에서 예외 케이스에 따라 다른 함수를 호출하는 함수를 호출하고,
+// 만약 에러가 발생해서 doException 함수가 호출된다면,
+// doException 함수가 밖으로 throw 한 에러를 main 함수에서 catch하는 것이 자연스럽다.
+function main() {
+  try {
+    callException("do"); // 에러 케이스 전달
+  } catch (error) {
+    console.log(error); // 예외(에러) 처리
+  } finally {
+    console("done");
+  }
+}
 
 main();
