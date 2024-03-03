@@ -14,10 +14,21 @@ function doException() {
 }
 
 function main() {
-  doException();
+  // 예외 처리 구문 try...catch...fanally
+  // 예외(에러)가 발생(throw)된 경우 : catch 구문으로 예외가 걸려들어옴
+  // 예외(에러)가 발생하지 않은 경우 : finally 구문으로
+  // 말하자면 try는 if 조건문,
+  // catch는 특정 조건에 대한 실행문(body)
+  // fanally는 모든 상황의 마지막에 한 번 실행되는 구문 (에러 발생 안한 경우 finally로 직행, 에러 발생한 경우 예외처리문 실행 후에 finally문 실행)
+  try {
+    doException();
+  } catch (error) {
+    console.log(error); // 에러가 발생한 경우 위의 '예외 처리 후 실행해야 하는 코드'는 실행되지 않고
+    //                     바로 catch문으로 넘어가버리고, catch로 throw된 예외를 잡아서 처리한 뒤에 finally가 없다면 '예외 처리 후 실행해야 하는 코드'는 실행되지 않고 끝나버린다.
+    //                     이러한 상황에 finally가 필요하다.
+  } finally {
+    console.log("예외 처리 후 실행해야 하는 코드"); // finally에 작성해주면 catch문의 실행여부와 관련 없이 에러가 발생된 경우이건, 발생하지 않은 경우이건 종료 전에 finally문이 실행되게 된다.
+  }
 }
 
 main();
-
-// 이렇게만 하면 에러가 던져지기만 하고 그 에러를 받아서 치리하는 부분이 없는 상태.
-// 이 상태로 실행하면 에러 발생 후 애플리케이션이 종료되게 된다.
