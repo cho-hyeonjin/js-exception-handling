@@ -15,6 +15,15 @@ function noException() {
   return true;
 }
 
+// 전달받은 인수에 따라 다른 함수를 실행하는 함수
+function callException(type) {
+  if (type === "do") {
+    doException();
+  } else {
+    noException();
+  }
+}
+
 function main() {
   try {
     // todo: 경우에 따라 doException, noException 실행하는 코드로 변경하기
